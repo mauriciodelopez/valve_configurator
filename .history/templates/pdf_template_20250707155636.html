@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valve Datasheet</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      font-size: 14px;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    img.logo {
+      display: block;
+      margin: 0 auto 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 8px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    .section-title {
+      margin-top: 40px;
+      font-size: 18px;
+      color: #34495e;
+    }
+  </style>
+</head>
+<body>
+  <div style="width: 80%; margin: 0 auto;">
+
+    <!-- Logo + Title -->
+    <div style="text-align: center;">
+      <img src="static/img/maurovalves_logo.png" alt="MauroValves Logo" width="120" style="display:block; margin:0 auto 10px;">
+      <h1 style="margin-top: 10px;">Knife Gate Valve Technical Datasheet</h1>
+    </div>
+
+    <!-- Submitted Configuration -->
+    <h2 class="section-title">Submitted Configuration</h2>
+    <table>
+      {% for key, value in data.items() %}
+        <tr>
+          <th>{{ key.replace('_', ' ').capitalize() }}</th>
+          <td>{{ value }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+
+    <!-- Advisor Recommendations -->
+    <h2 class="section-title">Advisor Recommendations</h2>
+    <table>
+      {% for key, value in recommendations.items() %}
+        <tr>
+          <th>{{ key.replace('_', ' ').capitalize() }}</th>
+          <td>{{ value }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  </div>
+</body>
+</html>
