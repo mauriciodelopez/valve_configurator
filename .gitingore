@@ -1,0 +1,7 @@
+app.py
+
+templates/
+
+static/
+
+venv/ (which will be ignored)
