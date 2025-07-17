@@ -14,7 +14,7 @@
   <div class="container-fluid mt-4">
     <div class="row">
 
-      <!-- LEFT: Configurator Form -->
+      <!-- LEFT: Valve Configurator Form -->
       <div class="col-lg-6 mb-4 px-4">
         <img src="/static/img/maurovalves_logo.png" alt="MauroValves Logo" class="img-fluid mb-3" style="max-width: 200px;">
         <h3 class="mb-3">🔧 Knife Gate Valve Configurator</h3>
@@ -77,7 +77,7 @@
         </form>
 
         {% if data %}
-        <!-- PDF Download -->
+        <!-- Download PDF Button -->
         <form method="POST" action="/pdf" target="_blank">
           {% for key, value in data.items() %}
             <input type="hidden" name="{{ key }}" value="{{ value }}">
@@ -87,6 +87,7 @@
         {% endif %}
 
         {% if result %}
+        <!-- Show Recommendations -->
         <div class="alert alert-info mt-3">
           {{ result }}
           {% if recommendations %}
@@ -100,17 +101,15 @@
         {% endif %}
       </div>
 
-      <!-- RIGHT: 3D Viewer -->
+      <!-- RIGHT: 3D Model Viewer -->
       <div class="col-lg-6 px-4">
-        {% if result %}
-        <div id="container3D" style="width: 100%; height: 450px; border: 1px solid #ccc; border-radius: 8px;"></div>
-        <script type="module" src="/static/js/viewer3D.js"></script>
-        {% else %}
-        <div class="alert alert-secondary text-center mt-5">Complete the form to visualize the 3D model here.</div>
-        {% endif %}
+        <div id="container3D" style="width: 100%; height: 600px; border: 1px solid #ccc; border-radius: 8px;"></div>
       </div>
 
     </div>
   </div>
+
+  <!-- ✅ Load viewer3D logic with ES6 module -->
+  <script type="module" src="/static/js/viewer3D.js"></script>
 </body>
 </html>

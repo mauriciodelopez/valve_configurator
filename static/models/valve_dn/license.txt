@@ -1,0 +1,11 @@
+Model Information:
+* title:	Valve DN
+* source:	https://sketchfab.com/3d-models/valve-dn-137f060e3b9049fb9a03c8ad9ee9a8da
+* author:	Armin Rezaei (https://sketchfab.com/Armin2am)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Valve DN" (https://sketchfab.com/3d-models/valve-dn-137f060e3b9049fb9a03c8ad9ee9a8da) by Armin Rezaei (https://sketchfab.com/Armin2am) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

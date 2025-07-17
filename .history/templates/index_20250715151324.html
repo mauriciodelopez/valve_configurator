@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🛠️ MauroValves Configurator</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Three.js, GLTFLoader, OrbitControls -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.148.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.148.0/examples/js/controls/OrbitControls.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-light">
+
+  <div class="container-fluid py-4">
+    <!-- Logo -->
+    <div class="text-center mb-4">
+      <img src="{{ url_for('static', filename='img/maurovalves_logo.png') }}" alt="MauroValves Logo" width="200">
+      <h2 class="mt-3">Knife Gate Valve Configurator</h2>
+    </div>
+
+    <div class="row">
+      <!-- Left Column: Form -->
+      <div class="col-md-6">
+        <form method="POST" action="/generate">
+          <div class="row g-3">
+
+            <div class="col-md-6">
+              <label class="form-label">Fluid Type</label>
+              <select name="fluid" class="form-select" required>
+                <option value="Water">Water</option>
+                <option value="Slurry">Slurry</option>
+                <option value="Oil">Oil</option>
+                <option value="Gas">Gas</option>
+                <option value="Steam">Steam</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Solid Content</label>
+              <select name="solid_content" class="form-select">
+                <option value="None">None</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">Flow Direction</label>
+              <select name="flow_direction" class="form-select">
+                <option value="Unidirectional">Unidirectional</option>
+                <option value="Bidirectional">Bidirectional</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Operating Pressure (bar)</label>
+              <input type="number" name="pressure" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Operating Temperature (°C)</label>
+              <input type="number" name="temperature" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Line Size (DN)</label>
+              <input type="text" name="line_size" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Installation Position</label>
+              <select name="installation_position" class="form-select">
+                <option value="Horizontal">Horizontal</option>
+                <option value="Vertical">Vertical</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Valve Body Material</label>
+              <select name="body_material" class="form-select">
+                <option value="Cast Iron">Cast Iron</option>
+                <option value="Ductile Iron">Ductile Iron</option>
+                <option value="Stainless Steel">Stainless Steel</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Seat Type</label>
+              <select name="seat_type" class="form-select">
+                <option value="EPDM">EPDM</option>
+                <option value="NBR">NBR</option>
+                <option value="PTFE">PTFE</option>
+                <option value="Metal">Metal</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Gate Material</label>
+              <select name="gate_material" class="form-select">
+                <option value="Stainless Steel">Stainless Steel</option>
+                <option value="Carbon Steel">Carbon Steel</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Port Design</label>
+              <select name="port_design" class="form-select">
+                <option value="Full Bore">Full Bore</option>
+                <option value="Reduced Bore">Reduced Bore</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Flange Type</label>
+              <select name="flange_type" class="form-select">
+                <option value="PN10">PN10</option>
+                <option value="PN16">PN16</option>
+                <option value="ANSI">ANSI</option>
+                <option value="Wafer">Wafer</option>
+                <option value="Lug">Lug</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Actuation Type</label>
+              <select name="actuation_type" class="form-select">
+                <option value="Electric">Electric</option>
+                <option value="Pneumatic">Pneumatic</option>
+                <option value="Manual">Manual</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Cycle Frequency</label>
+              <input type="text" name="cycle_frequency" class="form-control" placeholder="e.g. 20 per day">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Opening Speed</label>
+              <input type="text" name="opening_speed" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Available Space</label>
+              <input type="text" name="space" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Ambient Conditions</label>
+              <input type="text" name="conditions" class="form-control">
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">Certifications</label>
+              <input type="text" name="certifications" class="form-control" placeholder="e.g. ATEX, CE, PED">
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-4">Generate Configuration</button>
+        </form>
+
+        {% if result %}
+        <div class="alert alert-success mt-4">
+          <h5>{{ result }}</h5>
+          <ul>
+            {% for key, value in data.items() %}
+              <li><strong>{{ key|capitalize }}:</strong> {{ value }}</li>
+            {% endfor %}
+          </ul>
+
+          <!-- PDF Download Button -->
+          <form method="POST" action="/pdf" target="_blank">
+            {% for key, value in data.items() %}
+              <input type="hidden" name="{{ key }}" value="{{ value }}">
+            {% endfor %}
+            <button class="btn btn-success mt-3">📄 Download PDF Datasheet</button>
+          </form>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Right Column: 3D Viewer -->
+      <div class="col-md-6">
+        <h4 class="text-center mb-3">🔧 3D Knife Gate Valve</h4>
+        <div id="viewer" style="width: 100%; height: 600px; border: 1px solid #ccc;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

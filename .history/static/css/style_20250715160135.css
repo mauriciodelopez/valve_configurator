@@ -1,0 +1,45 @@
+/* General page styling */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+}
+
+/* MauroValves logo */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* Make viewer taller on larger screens */
+@media (min-width: 768px) {
+  #viewer {
+    height: 600px;
+  }
+}
+
+/* Button styling */
+button.btn {
+  font-weight: 500;
+  padding: 10px 20px;
+}
+
+/* Make buttons full width on small screens */
+@media (max-width: 576px) {
+  .btn {
+    width: 100%;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Form spacing */
+form .form-label {
+  font-weight: 600;
+}
+
+.alert ul {
+  padding-left: 20px;
+}
